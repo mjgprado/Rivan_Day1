@@ -34,6 +34,78 @@ dir
 ## 🔧 Configure CoreTAAS
 ### ⚙️ 1. Initial configurations
 
+~~~
+!@CoreTAAS
+conf t
+ hostname CoreTAAS-#$34T#
+ enable password pass
+ no logging cons
+ no ip domain lookup
+ line cons 0
+  password pass
+  login
+  exec-timeout 0 0
+ line vty 0 14
+  password pass
+  login
+  exec-timeout 0 0
+  end
+show run | s line
+!
+~~~
+
+<br>
+<br>
+
+__User Accounts__
+~~~
+!@CoreTAAS
+conf t
+ username admin privilege 15 password pass
+ username rivan privilege 15 password C1sc0123
+ username user1 privilege 1  password pass
+ !
+ line cons 0
+  password pass
+  login
+  exec-timeout 0 0
+ line vty 0 14
+  password pass
+  login local
+  exec-timeout 0 0
+ end
+show run | s username
+!
+~~~
+
+<br>
+<br>
+
+__Secure Passwords__
+~~~
+!@CoreTAAS
+conf t
+ username ___ privilege 15 secret pass
+ end
+show run | s username
+!
+~~~
+
+<br>
+
+~~~
+!@CoreTAAS
+conf t
+ service password-encryption
+ end
+~~~
+
+
+&nbsp;
+---
+&nbsp;
+
+
 __First 5 - H.E.S.No__
 
 ~~~
